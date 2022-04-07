@@ -1,5 +1,5 @@
 {
-  "name": "kafka-schema-registry-publish-job",
+  "name": "registry-validation",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
