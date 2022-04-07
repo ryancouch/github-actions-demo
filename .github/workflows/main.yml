@@ -3,9 +3,49 @@ on: push
 
 jobs:
   test:
+    name: Kafka Schema Registry Validation
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-    - run: npm install
-    - run: npm test
+#      - name: Checkout master branch
+#        uses: actions/checkout@v3
+#        with:
+#          repository: masterysystems/alchemy-routing-guide
+#          path: alchemy-routing-guide
+#
+#      - name: Build & Start Containers
+#        id: containers
+#        working-directory: ./alchemy-routing-guide
+#        run: |
+#          docker-compose -f Kafka/ci-schema-validation/docker-compose.yml up -d --build &&
+#          docker-compose -f Kafka/ci-schema-validation/docker-compose.yml logs -f registry-validation
+
+      - name: Generate 0 or 1
+        id: output
+        run:
+          echo "::set-output name=result::$(($RANDOM % 2))"
+#          echo ${{ steps.containers.outcome }}
+#          echo ${{ steps.containers.outputs.result }}
+
+#      - name: Containers success
+#        if: ${{ steps.containers.outcome == 'success' }}
+#        run: echo "Kafka Schema Registry from Main Branch Completed..."
+
+#      - name: Containers failures
+#        if: ${{ steps.containers.outcome != 'success' }}
+#        run: exit 1
+
+#      - name: Pass or fail
+#        run: |
+#          if [[ ${{ steps.output.outputs.result }} == 0 ]];
+#            then
+#              exit 0;
+#            else
+#              exit 1;
+#          fi
+
+      - name: Check for failed result
+        if: ${{ steps.output.outputs.result == 1 }}
+        uses: actions/github-script@v2
+        with:
+          script: |
+              core.setFailed('Result failed tolerance')

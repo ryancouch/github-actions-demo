@@ -1,0 +1,8 @@
+---
+version: "1"
+services:
+  registry-validation:
+    build: ../
+    hostname: registry-validation
+    container_name: registry-validation
+    command: "npm run start:ci'"

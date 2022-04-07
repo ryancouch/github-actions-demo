@@ -1,0 +1,15 @@
+{
+  "name": "kafka-schema-registry-publish-job",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start:ci": "node app.js",
+    "start:local": "node app.js",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {}
+}
