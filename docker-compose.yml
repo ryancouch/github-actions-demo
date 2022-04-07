@@ -2,6 +2,7 @@
 version: "2"
 services:
   app:
+    dockerfile: Dockerfile
     build: .
     hostname: app
     container_name: app

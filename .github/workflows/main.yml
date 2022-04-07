@@ -21,31 +21,30 @@ jobs:
           echo "App Outcome:  ${{ steps.containers.outcome }}"
           echo "App exitCode: ${{ steps.containers.outputs.exitCode }}"
 
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run npm App
-        id: npm
-        run: npm start
-
-      - name: Check app values
-        run: |
-          echo "App Outcome:  ${{ steps.npm.outcome }}"
-          echo "App exitCode: ${{ steps.npm.outputs.exitCode }}"
-
-      - name: Generate 0 or 1
-        id: output
-        run: echo "::set-output name=result::$(($RANDOM % 2))"
-
-
-      - name: Check for failed result
-        if: ${{ steps.output.outputs.result == 1 }}
-        uses: actions/github-script@v2
-        with:
-          script: |
-              core.setFailed('Random Output Result failed tolerance')
+#      - name: Use Node.js
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '12'
+#
+#      - name: Install dependencies
+#        run: npm ci
+#
+#      - name: Run npm App
+#        id: npm
+#        run: npm start
+#
+#      - name: Check app values
+#        run: |
+#          echo "App Outcome:  ${{ steps.npm.outcome }}"
+#          echo "App exitCode: ${{ steps.npm.outputs.exitCode }}"
+#
+#      - name: Generate 0 or 1
+#        id: output
+#        run: echo "::set-output name=result::$(($RANDOM % 2))"
+#
+#      - name: Check for failed result
+#        if: ${{ steps.output.outputs.result == 1 }}
+#        uses: actions/github-script@v2
+#        with:
+#          script: |
+#              core.setFailed('Random Output Result failed tolerance')
