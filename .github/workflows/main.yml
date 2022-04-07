@@ -10,15 +10,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build & Start Containers
-        id: containers
         run: |
-          docker-compose build
           docker-compose up -d --build
-          docker-compose logs -f app
+
+      - name: Logs
+        id: containers
+        run: docker-compose logs -f --no-log-prefix app
 
       - name: Check containers values
         run: |
-          echo "App Outcome:  ${{ steps.containers.outcome }}"
           echo "App exitCode: ${{ steps.containers.outputs.exitCode }}"
 
 #      - name: Use Node.js
@@ -48,3 +48,7 @@ jobs:
 #        with:
 #          script: |
 #              core.setFailed('Random Output Result failed tolerance')
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose down
