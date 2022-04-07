@@ -1,0 +1,8 @@
+---
+version: "2"
+services:
+  app:
+    build: .
+    hostname: app
+    container_name: app
+    command: "npm run start"
