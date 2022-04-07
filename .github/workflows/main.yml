@@ -6,18 +6,17 @@ jobs:
     name: Kafka Schema Registry Validation
     runs-on: ubuntu-latest
     steps:
-#      - name: Checkout master branch
-#        uses: actions/checkout@v3
+      - name: Checkout master branch
+        uses: actions/checkout@v3
 #        with:
 #          repository: masterysystems/alchemy-routing-guide
 #          path: alchemy-routing-guide
-#
-#      - name: Build & Start Containers
-#        id: containers
-#        working-directory: ./alchemy-routing-guide
-#        run: |
-#          docker-compose -f Kafka/ci-schema-validation/docker-compose.yml up -d --build &&
-#          docker-compose -f Kafka/ci-schema-validation/docker-compose.yml logs -f registry-validation
+
+      - name: Build & Start Containers
+        id: containers
+        run: |
+          docker-compose -f demo/docker-compose.yml up -d --build &&
+          docker-compose -f demo/docker-compose.yml logs -f registry-validation
 
       - name: Generate 0 or 1
         id: output
